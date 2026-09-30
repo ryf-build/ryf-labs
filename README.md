@@ -4,7 +4,7 @@
 
 This is the sandbox for ideas that are useful to share but do not belong to a larger product repository.
 
-> Experiments here are clean-room public examples. No private product code, customer data, credentials, production configuration, or internal endpoints are published here.
+> Experiments here are clean-room public examples. No private product code, customer data, credentials, production configuration, internal endpoints, real infrastructure identifiers, or proprietary implementation is published here.
 
 ## Areas
 
@@ -17,6 +17,12 @@ This is the sandbox for ideas that are useful to share but do not belong to a la
 - Small command-line tools
 - Workflow experiments
 - Technical-book companion code
+
+## Experiments
+
+### [Engineering Control Plane Lab](experiments/engineering-control-plane)
+
+A small static demo using fictional projects to show candidates, dependencies, evidence, blocked work, and next actions. It has no backend and sends no data anywhere.
 
 ## Featured companion
 

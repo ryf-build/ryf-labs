@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Engineering Control Plane Lab</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+    body { margin: 0; background: #0d1117; color: #e6edf3; }
+    main { max-width: 1100px; margin: 0 auto; padding: 40px 20px 64px; }
+    h1 { margin-bottom: 6px; }
+    .muted { color: #8b949e; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 14px; margin-top: 28px; }
+    .card { border: 1px solid #30363d; border-radius: 12px; padding: 16px; background: #161b22; }
+    .tag { display: inline-block; border: 1px solid #30363d; border-radius: 999px; padding: 4px 9px; margin: 3px 4px 3px 0; font-size: 12px; }
+    .ready { border-color: #238636; }
+    .blocked { border-color: #da3633; }
+    .verify { border-color: #8957e5; }
+    code { color: #79c0ff; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Engineering Control Plane Lab</h1>
+  <p class="muted">Fictional data only · static local demo · no backend</p>
+  <div id="grid" class="grid"></div>
+</main>
+
+<script>
+const items = [
+  {
+    project: "Project Alpha",
+    candidate: "feature/search-v2",
+    state: "READY",
+    className: "ready",
+    dependencies: ["design-approved"],
+    evidence: ["unit-tests", "review"],
+    next: "run integration checks"
+  },
+  {
+    project: "Project Beta",
+    candidate: "feature/importer",
+    state: "BLOCKED",
+    className: "blocked",
+    dependencies: ["schema-contract"],
+    evidence: ["unit-tests"],
+    next: "wait for contract"
+  },
+  {
+    project: "Project Gamma",
+    candidate: "release/1.4",
+    state: "VERIFY",
+    className: "verify",
+    dependencies: [],
+    evidence: ["build", "regression"],
+    next: "independent verification"
+  }
+];
+
+const grid = document.getElementById("grid");
+
+for (const item of items) {
+  const card = document.createElement("section");
+  card.className = "card " + item.className;
+  card.innerHTML = `
+    <h2>${item.project}</h2>
+    <p><code>${item.candidate}</code></p>
+    <p><strong>${item.state}</strong></p>
+    <p class="muted">Dependencies</p>
+    <div>${(item.dependencies.length ? item.dependencies : ["none"]).map(x => `<span class="tag">${x}</span>`).join("")}</div>
+    <p class="muted">Evidence</p>
+    <div>${item.evidence.map(x => `<span class="tag">${x}</span>`).join("")}</div>
+    <p><strong>Next:</strong> ${item.next}</p>
+  `;
+  grid.appendChild(card);
+}
+</script>
+</body>
+</html>
